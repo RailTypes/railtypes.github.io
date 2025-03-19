@@ -1,9 +1,9 @@
 :root {
-  --background-color: #000;
+  --background-color: #222;
   --color: #fff;
-  --font-family: "Roboto", sans-serif;
+  --font-family: "Inter", Tahoma, sans-serif, serif;
   --font-size: 16px;
-  --font-weight: 400;
+  --font-weight: medium;
 }
 
 body {
