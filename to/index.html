@@ -4,6 +4,7 @@
 
 <body>
     <script>
+
         const SOCIALS = {
             "youtube": "https://youtube.com/@RailTypes",
             "twitter": "https://x.com/RailTypes",
@@ -17,10 +18,11 @@
             "codeberg": "https://www.codeberg.org/RailTypes"
         }
 
-        const pathSegments = window.location.pathname.split('/');
-        const social = pathSegments[1];
-        const to = SOCIALS[social.toLowerCase()];
-        
+        const queryString = window.location.search;
+        const searchParams = new URLSearchParams(queryString);
+        const platform = searchParams.get('s');
+        const to = SOCIALS[platform.toLowerCase()];
+
         if (to) {
             window.location.href = to;
         }
