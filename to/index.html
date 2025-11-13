@@ -1,0 +1,30 @@
+<html>
+
+<head></head>
+
+<body>
+    <script>
+        const SOCIALS = {
+            "youtube": "https://youtube.com/@RailTypes",
+            "twitter": "https://x.com/RailTypes",
+            "x": "https://x.com/RailTypes",
+            "discord": "https://discord.gg/puhhe5dqwb",
+            "instagram": "https://www.instagram.com/railtypes",
+            "steam": "https://steamcommunity.com/profiles/76561199788794687",
+            "roblox": "https://www.roblox.com/communities/34868211",
+            "devforum": "https://devforum.roblox.com/u/railtypes",
+            "github": "https://www.github.com/RailTypes",
+            "codeberg": "https://www.codeberg.org/RailTypes"
+        }
+
+        const pathSegments = window.location.pathname.split('/');
+        const social = pathSegments[1];
+        const to = SOCIALS[social.toLowerCase()];
+        
+        if (to) {
+            window.location.href = to;
+        }
+    </script>
+</body>
+
+</html>
