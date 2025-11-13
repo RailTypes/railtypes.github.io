@@ -1,0 +1,24 @@
+<html>
+
+<head></head>
+
+<body>
+    <script>
+        const response = await fetch("assets/socials.json");
+        if (!response.ok) {
+            throw new Error(`HTTP ${response.status}`);
+        }
+
+        const socials = await response.json()
+        const queryString = window.location.search;
+        const searchParams = new URLSearchParams(queryString);
+        const platform = searchParams.get('s');
+        const to = socials[platform.toLowerCase()];
+
+        if (to) {
+            window.location.href = to;
+        }
+    </script>
+</body>
+
+</html>
