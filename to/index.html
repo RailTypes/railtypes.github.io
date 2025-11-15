@@ -4,12 +4,15 @@
 
 <body>
     <script>
-        const response = await fetch("assets/socials.json");
-        if (!response.ok) {
-            throw new Error(`HTTP ${response.status}`);
+        async function loadSocials() {
+            const response = await fetch("assets/socials.json");
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+            const socials = await response.json();
+            return socials;
         }
 
-        const socials = await response.json()
+        const socials = loadSocials();
         const queryString = window.location.search;
         const searchParams = new URLSearchParams(queryString);
         const platform = searchParams.get('s');
