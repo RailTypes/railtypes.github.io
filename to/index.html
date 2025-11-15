@@ -4,24 +4,22 @@
 
 <body>
     <script>
-        async function loadSocials() {
-            const response = await fetch("/assets/socials.json");
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        fetch('/assets/socials.json')
+            .then(response => response.json())
+            .then(socials => {
+                const queryString = window.location.search;
+                const searchParams = new URLSearchParams(queryString);
+                const platform = searchParams.get('s');
+                if (!platform) throw new Error('No specified platform');
 
-            const socials = await response.json();
-            return socials;
-        }
-
-        const socials = loadSocials();
-        const queryString = window.location.search;
-        const searchParams = new URLSearchParams(queryString);
-        const platform = searchParams.get('s');
-        if (!platform) throw new Error('No specified platform');
-
-        const to = socials[platform.toLowerCase()];
-        if (to) {
-            window.location.href = to;
-        }
+                const to = socials[platform.toLowerCase()];
+                if (to) {
+                    window.location.href = to;
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching or parsing data:', error);
+            });
     </script>
 </body>
 
