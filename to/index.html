@@ -5,7 +5,7 @@
 <body>
     <script>
         async function loadSocials() {
-            const response = await fetch("assets/socials.json");
+            const response = await fetch("/assets/socials.json");
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
             const socials = await response.json();
@@ -16,8 +16,9 @@
         const queryString = window.location.search;
         const searchParams = new URLSearchParams(queryString);
         const platform = searchParams.get('s');
-        const to = socials[platform.toLowerCase()];
+        if (!platform) throw new Error('No specified platform');
 
+        const to = socials[platform.toLowerCase()];
         if (to) {
             window.location.href = to;
         }
